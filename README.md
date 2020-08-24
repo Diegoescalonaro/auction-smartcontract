@@ -1,5 +1,5 @@
 # Auction-SmartContract
-Smart Contract example to explain the methods of design and development for a Smart Contract
+Auction basic example to explain the methods of design and development for a Smart Contract
 
 
 ## Variables (datos)
