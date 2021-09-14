@@ -9,18 +9,22 @@ pragma solidity >=0.4.22 <0.7.0;
 contract Auction {
 
     // ----------- Variables (datos) -----------
-    address payable public originalOwner;
-    address public newOwner;
-    
-    uint256 private secondsToEnd;
-    uint256 public createdTime;
-    
+
+    // Información de la subasta
     string public description;
     uint public basePrice;
-    
+    uint256 private secondsToEnd;
+    uint256 public createdTime;
+
+    // Antiguo/nuevo dueño de subasta
+    address payable public originalOwner;
+    address public newOwner;
+
+    // Puja mas alta
     address payable public highestBidder;
     uint public highestPrice;
     
+    // Estado de la subasta
     bool public activeContract;
     
     // ----------- Eventos (pueden ser emitidos por el Smart Contract) -----------
