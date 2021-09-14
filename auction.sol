@@ -9,7 +9,6 @@ pragma solidity >=0.4.22 <0.7.0;
 contract Auction {
 
     // ----------- Variables (datos) -----------
-
     // Información de la subasta
     string public description;
     uint public basePrice;
