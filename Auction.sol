@@ -1,4 +1,6 @@
 // Version de solidity del Smart Contract
+// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity >=0.4.22 <0.7.0;
 
 // Informacion del Smart Contract
@@ -10,10 +12,10 @@ contract Auction {
 
     // ----------- Variables (datos) -----------
     // Información de la subasta
-    string public description;
-    uint public basePrice;
+    string private description;
+    uint private basePrice;
     uint256 private secondsToEnd;
-    uint256 public createdTime;
+    uint256 private createdTime;
 
     // Antiguo/nuevo dueño de subasta
     address payable public originalOwner;
@@ -24,7 +26,7 @@ contract Auction {
     uint public highestPrice;
     
     // Estado de la subasta
-    bool public activeContract;
+    bool private activeContract;
     
     // ----------- Eventos (pueden ser emitidos por el Smart Contract) -----------
     event Status(string _message);
@@ -36,8 +38,8 @@ contract Auction {
         
         // Inicializo el valor a las variables (datos)
         description = "En esta subasta se ofrece un coche. Se trata de un Ford Focus de ...";
-        basePrice = 1 ether;    
-        secondsToEnd = 86400;
+        basePrice = 1 ether;   
+        secondsToEnd = 600;   // 86400 = 24h | 3600 = 1h | 900 = 15 min | 600 = 10 min
         activeContract = true;
         createdTime = block.timestamp;
         originalOwner = msg.sender;
@@ -70,7 +72,7 @@ contract Auction {
             } else {
                 // Se emite un evento
                 emit Status("La puja no es posible, no es lo suficientemente alta");
-                revert();
+                revert("La puja no es posible, no es lo suficientemente alta");
             }
         }
     }
@@ -92,7 +94,7 @@ contract Auction {
             emit Status("La subasta ha finalizado");
             emit Result("El ganador de la subasta ha sido:", highestBidder);
         } else {
-            revert();
+            revert("La subasta esta activa");
         }
     }
         
@@ -102,7 +104,7 @@ contract Auction {
     // Nombre: stopAuction
     // Uso:    Para la subasta y devuelve el dinero al maximo postor
     function stopAuction() public{
-        require(msg.sender == originalOwner);
+        require(msg.sender == originalOwner, "You must be the original OWNER");
         // Finaliza la subasta
         activeContract = false;
         // Devuelve el dinero al maximo postor
@@ -116,9 +118,9 @@ contract Auction {
 
     // Funcion
     // Nombre: getAuctionInfo
-    // Logica: Consulta la description, y la fecha de creacion de la subasta
-    function getAuctionInfo() public view returns (string memory, uint){
-        return (description, createdTime);
+    // Logica: Consulta la description, la fecha de creacion y el tiempo de la subasta
+    function getAuctionInfo() public view returns (string memory, uint, uint){
+        return (description, createdTime, secondsToEnd);
     }
     
     // Funcion
@@ -126,6 +128,34 @@ contract Auction {
     // Logica: Consulta el precio de la maxima puja
     function getHighestPrice() public view returns (uint){
         return (highestPrice);
+    }
+
+    // Funcion
+    // Nombre: getHighestBidder
+    // Logica: Consulta el maximo pujador de la subasta
+    function getHighestBidder() public view returns (address){
+        return (highestBidder);
+    }
+
+    // Funcion
+    // Nombre: getDescription
+    // Logica: Consulta la descripcion de la subasta
+    function getDescription() public view returns (string memory){
+        return (description);
+    }
+
+    // Funcion
+    // Nombre: getBasePrice
+    // Logica: Consulta el precio inicial de la subasta
+    function getBasePrice() public view returns (uint256){
+        return (basePrice);
+    }
+
+    // Funcion
+    // Nombre: getActiveContract
+    // Logica: Consulta si la subasta esta activa o no
+    function isActive() public view returns (bool){
+        return (activeContract);
     }
     
 }
