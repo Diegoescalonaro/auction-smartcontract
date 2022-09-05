@@ -1,7 +1,7 @@
 // Version de solidity del Smart Contract
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity >=0.4.22 <0.7.0;
+pragma solidity ^0.8.16;
 
 // Informacion del Smart Contract
 // Nombre: Subasta
@@ -34,7 +34,7 @@ contract Auction {
 
     // ----------- Constructor -----------
     // Uso: Inicializa el Smart Contract - Auction con: description, precio y tiempo
-    constructor() public {
+    constructor() {
         
         // Inicializo el valor a las variables (datos)
         description = "En esta subasta se ofrece un coche. Se trata de un Ford Focus de ...";
@@ -42,7 +42,7 @@ contract Auction {
         secondsToEnd = 600;   // 86400 = 24h | 3600 = 1h | 900 = 15 min | 600 = 10 min
         activeContract = true;
         createdTime = block.timestamp;
-        originalOwner = msg.sender;
+        originalOwner = payable(msg.sender);
         
         // Se emite un Evento
         emit Status("Subasta creada");
@@ -64,7 +64,7 @@ contract Auction {
                 highestBidder.transfer(highestPrice);
                 
                 // Actualiza el nombre y precio al NUEVO maximo postor
-                highestBidder = msg.sender;
+                highestBidder = payable(msg.sender);
                 highestPrice = msg.value;
                 
                 // Se emite un evento
