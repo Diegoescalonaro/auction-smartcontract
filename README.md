@@ -1,7 +1,9 @@
 # Auction-SmartContract
 Auction basic example to explain the methods of design and development for a Smart Contract
 
-The smart contract code is inside the [auction.sol](./Auction.sol) file. You just need to copy & paste into Remix IDE to start playing
+The smart contract code is inside the [Auction.sol](./Auction.sol) file. You just need to copy & paste into Remix IDE to start playing
+
+[Please click here to see the Smart Contract](./Auction.sol)
 
 
 ## Variables (datos)
