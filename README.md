@@ -5,11 +5,11 @@ The smart contract code is inside the [Auction.sol](./Auction.sol) file. You jus
 
 [🔎 Click here to see the Smart Contract code ](./Auction.sol)
 
-[🌐 Link to Remix IDE]([./Auction.sol](https://remix.ethereum.org/))
+[🌐 Link to Remix IDE](https://remix.ethereum.org/)
 
 [🌐 Link to MetaMask website](https://metamask.io/)
 
-[📊 Click here to see the tests](./Auction.sol)
+[📊 Click here to see the tests](./Auction_test.sol)
 
 
 ## Variables (datos)
