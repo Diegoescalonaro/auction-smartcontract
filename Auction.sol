@@ -108,7 +108,9 @@ contract Auction {
         // Finaliza la subasta
         activeContract = false;
         // Devuelve el dinero al maximo postor
-        highestBidder.transfer(highestPrice);
+        if (highestBidder != address(0x0)){
+            highestBidder.transfer(highestPrice);
+        }
         
         // Se emite un evento
         emit Status("La subasta se ha parado");
