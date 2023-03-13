@@ -92,8 +92,7 @@ contract Auction {
             newOwner = highestBidder;
             originalOwner.transfer(highestPrice);
             
-            // Se emiten varios eventos
-            emit Status("La subasta ha finalizado");
+            // Se emite el evento de resultado
             emit Result("El ganador de la subasta ha sido:", highestBidder);
         } else {
             revert("La subasta esta activa");
