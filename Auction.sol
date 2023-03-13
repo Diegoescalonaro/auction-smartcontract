@@ -13,6 +13,7 @@ contract Auction {
     // ----------- Variables (datos) -----------
     // Información de la subasta
     string private description;
+    string private imageURI;
     uint private basePrice;
     uint256 private secondsToEnd;
     uint256 private createdTime;
@@ -38,7 +39,8 @@ contract Auction {
         
         // Inicializo el valor a las variables (datos)
         description = "En esta subasta se ofrece un coche. Se trata de un Ford Focus de ...";
-        basePrice = 1 ether;   
+        imageURI = "https://bafybeifzm6xqduwgl6lwjyabj2v5qwduwqgotr6hjj5cu632ldtu6zbw4a.ipfs.nftstorage.link/";
+        basePrice = 0.1 ether;   
         secondsToEnd = 600;   // 86400 = 24h | 3600 = 1h | 900 = 15 min | 600 = 10 min
         activeContract = true;
         createdTime = block.timestamp;
@@ -144,6 +146,13 @@ contract Auction {
     // Logica: Consulta la descripcion de la subasta
     function getDescription() public view returns (string memory){
         return (description);
+    }
+
+    // Funcion
+    // Nombre: getImageURI
+    // Logica: Consulta la imagen del activo subastado
+    function getImageURI() public view returns (string memory){
+        return (imageURI);
     }
 
     // Funcion
