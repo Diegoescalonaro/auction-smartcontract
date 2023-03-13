@@ -114,7 +114,7 @@ contract Auction {
         }
         
         // Se emite un evento
-        emit Status("La subasta se ha parado");
+        emit Result("La subasta se ha parado", msg.sender);
     }
     
     // ------------ Funciones que consultan datos (get) ------------
