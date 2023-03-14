@@ -20,6 +20,7 @@ newOwner: address
 
 // Información de la subasta
 description: string
+imageURI: string
 basePrice: number
 secondsToEnd: number
 createdTime: number
