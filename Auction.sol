@@ -40,7 +40,7 @@ contract Auction {
         // Inicializo el valor a las variables (datos)
         description = "En esta subasta se ofrece un coche. Se trata de un Ford Focus de ...";
         imageURI = "https://bafybeifzm6xqduwgl6lwjyabj2v5qwduwqgotr6hjj5cu632ldtu6zbw4a.ipfs.nftstorage.link/";
-        basePrice = 0.1 ether;   
+        basePrice = 0.01 ether;   
         secondsToEnd = 600;   // 86400 = 24h | 3600 = 1h | 900 = 15 min | 600 = 10 min
         activeContract = true;
         createdTime = block.timestamp;
